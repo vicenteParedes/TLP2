@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de comunicados</title>
+</head>
+<body>
+        {% block content %}
+    <h1> Lista de comunicados</h1>
+    <ul>
+        {% for comunicado in comunicados %}
+        <li>{{ cominicado.titulo }}</li>
+        <p> {{comunicado.contenido}} </p>
+        <hr>
+        {% endfor %}
+    </ul>
+
+    <form method="GET" action="{% url 'comunicado-list' %}">
+        <label for="nivel">Filtrar por nivel:</label>
+        <select name="nivel" id="nivel">
+          <option value="">Todos los niveles</option>
+          <option value="GEN">Generel</option>
+          <option value="PRE">Ciclo Prescolar</option>
+          <option value="BAS">Ciclo Basico</option>
+          <option value="MED">Ciclo Medio</option>
+        </select>
+
+        <label for="categoria">Filtrar por categoría:</label>
+    <select name="categoria" id="categoria">
+      <option value="">Todas las categorías</option>
+      <option value="General">General</option>
+      <option value="Eventos">Eventos</option>
+    </select>
+
+    <button type="submit">Filtrar</button>
+    </form>
+
+    <ul>
+        {% for comunicado in comunicados %}
+        <li>{{ comunicado.titulo }}</li> 
+        <p>{{ comunicado.contenido }}</p>  
+        <hr>
+        {% endfor %}
+    </ul>
+    {% endblock %}    
+
+</body>
+</html>
